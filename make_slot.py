@@ -9,7 +9,14 @@ INPUT_FILE = "input.xlsx"
 OUTPUT_FILE = "final_assignment.xlsx"
 
 DAYS = ["월", "화", "수", "목", "금"]
-SLOTS = [f"slot{i}" for i in range(1, 7)]
+SLOTS = [
+    "11:00-12:20",
+    "12:25-13:50",
+    "13:55-15:20",
+    "15:25-16:50",
+    "16:55~18:20",
+    "18:25~19:50",
+]
 CAPACITY_PHASE1 = 1
 CAPACITY_TOTAL = 2
 
@@ -206,3 +213,27 @@ for person, slots in person_slots.items():
     print(person, "->", slots)
 
 print("\n완료 →", OUTPUT_FILE)
+
+# =========================
+# 모든 슬롯별 가능 인원 저장
+# =========================
+
+
+
+all_available_df = pd.DataFrame("", index=SLOTS, columns=DAYS)
+
+for slot in SLOTS:
+    for day in DAYS:
+        key = (slot, day)
+
+        people_list = sorted(slot_available.get(key, []))
+
+        if people_list:
+            all_available_df.at[slot, day] = "\n".join(people_list)
+
+# slot 이름을 실제 시간으로 변경
+all_available_df.index = SLOTS
+
+all_available_df.to_excel("all_available.xlsx")
+
+print("가능 인원 전체 저장 완료 → all_available.xlsx")
