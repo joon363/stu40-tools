@@ -1,0 +1,29 @@
+# Python 캐시 및 환경
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+
+# 가상환경
+.venv/
+env/
+venv/
+ENV/
+
+# IDE 설정
+.idea/
+.vscode/*
+!.vscode/settings.json
+
+# OS 및 편집기 임시 파일 (오피스 임시 파일 제외)
+.DS_Store
+Thumbs.db
+Desktop.ini
+~$*.xlsx
+~$*.docx
+~$*.hwp
+*.tmp
